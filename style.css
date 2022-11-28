@@ -1,0 +1,128 @@
+html, body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background: #000;
+    overflow: hidden;
+
+    --height-percent: 1;
+}
+
+.loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+}
+
+.loading .text {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    color: #FFF;
+    text-align: center;
+}
+
+.clock {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.clock * {
+    image-rendering: crisp-edges;
+}
+
+.clock .dial {
+    position: absolute;
+    top: calc(60px * var(--height-percent));
+    left: 50%;
+    width: calc(((2048px * 0.52734375) - 120px) * var(--height-percent));
+    height: calc(((2048px * 0.52734375) - 120px) * var(--height-percent));
+    transform: translateX(-50%);
+}
+.clock .dial > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: drop-shadow(0px 0px 12px #FFF);
+}
+
+.clock .dial .small {
+    background-image: url('./assets/ClockDial_Small.png');
+    transform: scale(63.7%);
+}
+.clock .dial .meduim {
+    background-image: url('./assets/ClockDial_Medium.png');
+    transform: scale(80.8%);
+}
+.clock .dial .large {
+    background-image: url('./assets/ClockDial_Large.png');
+}
+
+.clock .hand {
+    position: absolute;
+    left: 50%;
+    bottom: calc(50% - calc(var(--bottom-offset) * var(--height-percent)));
+    width: calc((var(--width) * 0.52734375) * var(--height-percent));
+    height: calc((var(--height) * 0.52734375) * var(--height-percent));
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transform-origin: calc((var(--width-offset) * 0.52734375) * var(--height-percent)) calc((var(--height-offset) * 0.52734375) * var(--height-percent));
+    transform: translateX(-50%) rotate(calc(360deg * (var(--tick, 0)) / 60)) scale(var(--scale));
+    filter: drop-shadow(0px 0px 12px #FFF);
+
+    --tick: 0;
+}
+
+.loaded .clock .hand {
+    -webkit-transition: transform 0.1s cubic-bezier(0, 0, 0, 1.5);
+    -moz-transition: transform 0.1s cubic-bezier(0, 0, 0, 1.5);
+    -ms-transition: transform 0.1s cubic-bezier(0, 0, 0, 1.5);
+    -o-transition: transform 0.1s cubic-bezier(0, 0, 0, 1.5);
+    transition: transform 0.1s cubic-bezier(0, 0, 0, 1.5);
+}
+
+.clock .hand.s {
+    background-image: url('./assets/ClockHand_S.png');
+
+    --bottom-offset: 42px;
+    --width: 40px;
+    --height: 2048px;
+    --width-offset: 20px;
+    --height-offset: 1967px;
+    --scale: 38.8%;
+}
+.clock .hand.m {
+    background-image: url('./assets/ClockHand_M.png');
+    
+    --bottom-offset: 50px;
+    --width: 197px;
+    --height: 2048px;
+    --width-offset: 98.5px;
+    --height-offset: 1952px;
+    --scale: 24%;
+}
+.clock .hand.h {
+    background-image: url('./assets/ClockHand_H.png');
+
+    --bottom-offset: 38px;
+    --width: 200px;
+    --height: 2048px;
+    --width-offset: 100px;
+    --height-offset: 1976px;
+    --scale: 14%;
+}
